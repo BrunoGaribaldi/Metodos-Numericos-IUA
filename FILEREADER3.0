@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <math.h>
+#define FILAS 3
+#define COLUMNAS 3
+
+using namespace std;
+
+void fileReader (double m[FILAS][COLUMNAS], int* filas, int* columnas);
+void matrizA (double a[FILAS][COLUMNAS], double m[FILAS][COLUMNAS], int filas, int columnas);
+void matrizB (double b[FILAS], double m[FILAS][COLUMNAS], int filas, int columnas);
+int main(int argc, char* argv[])
+{
+	double m[FILAS][COLUMNAS];
+	double a[FILAS][COLUMNAS];
+	double b[FILAS];
+	int filas = 0, columnas = 0;
+	
+	fileReader(m, &filas, &columnas);
+	
+	int columnasA = columnas - 1;
+	
+	matrizA(a,m,filas, columnas);
+	
+	matrizB(b,m,filas, columnas);
+	
+
+}
+void fileReader (double m[FILAS][COLUMNAS],int* filas, int* columnas){
+	
+	
+	FILE *fp;
+	char c;
+	fp = fopen("data.txt","r");
+	if ( fp == NULL )
+	{
+		printf("No se puede abrir el archivo");
+	}
+	int fila=0;
+	int columna;
+	while((c = fgetc(fp)) != EOF)
+	{
+		if(c == '\n'){
+			fila++;
+		}
+	}
+	
+	fclose(fp);
+	fp = fopen("data.txt","r");
+	
+	int i, j;
+	for(i = 0; i < fila; i++) {
+		j = 0;
+		do {
+			fscanf(fp, "%lf", &(m[i][j]));
+			j++;
+		} while((c = fgetc(fp)) != '\n');
+	}
+	columna = j;
+	*columnas = columna;
+	*filas = fila;
+	
+}
+void matrizA (double a[FILAS][COLUMNAS],double m[FILAS][COLUMNAS], int filas, int columnas){
+	for(int i = 0 ; i < filas ; i++){
+		for (int j = 0 ; j < columnas - 1 ; j++){
+			a[i][j] = m[i][j];
+		}
+	}
+}
+	
+void matrizB (double b[FILAS],double m[FILAS][COLUMNAS], int filas, int columnas){
+	for(int i = 0 ; i < filas ; i++){
+		b[i] = m[i][columnas - 1];
+	}
+}
