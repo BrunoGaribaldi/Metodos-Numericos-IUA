@@ -1,0 +1,49 @@
+PRIMER PARCIAL RESUMEN 
+
+BISECCION 
+Parte de un intervalo [a,b] y plantea un c tal que c = a+b/2, es decir un valor justo al medio de a y b. Valua funcion y corre el c hacia el lado que este la raiz. C es el valor aproximado de la raiz.
+
+REGULA FALSI
+Parte tambien de un intervalo [a,b] y toma los puntos (a , f(a)) y (b , f(b)) y traza una recta entre esos dos puntos. El corte de la recta con el eje x es C.
+
+PUNTO FIJO
+Parte de un solo valor arbitrario. Busca el punto fijo de g(x) tal que x = g(x) donde x es el punto fijo de g. El punto fijo de g es la raiz de f. La condicion de convergencia es que fabs(g'(c)) < 1
+
+NEWTON-RAPHSON
+Parto de un xi arbitrario. sea X el valor de la raiz real, en cada itracion xi se va a ir acercando a X. Lo que hace este metodo es trazar rectas tangentes con la derivada de la funcion, y el punto de corte
+con el eje x es ese xi nuevo más cercano a X. Tengo que poner f' a mano y tengo que corroborar que no sea cerca de cero porq sino el metodo diverge y si f' es muy grande, llas iteraciones tienden a infinito
+por lo tanto tambien pongo un limite de iteraciones.
+
+ELIMINACION GAUSSIANA
+Primero triangula la matriz. Esto quiere decir que la lleva  a la forma de gauss. No pueden quedar filas de ceros y el primer elemento no nulo de cada fila es 1.
+En cada iteracion debo chequear que cada a[i][i] no sean cercanos a cero porq el metodo diverge, entonces en ese caso busco el elemento + grande e intercambio.
+chquea det != 0 para que haya solucion unica.
+
+JACOBI
+La matriz tiene que ser diagonalmente dominante y no debe tener ceros en la diagonal.
+
+GAUSS-SEIDEL CON RELAJACION
+
+El coeficiente de relajacion es un valor que va [0 , 2] y cumple que
+
+w = 1 --> gauss seidel
+
+w < 1 --> Subrelajacion y hace que un metodo que no convergía ahora converga.
+
+w > 1 --> Sobrerelajacion y hace que un metodo que ya convergía converga más rapido.
+
+INTERPOLACION
+El polinomio interpolador es unico y pasa exactamente por todos los puntos. Me permite encontrar valores que no tengo en la tabla, esto lo hago con un coeficiente a interpolar.
+Con lagrange obtengo el valor y con pollinomial obtengo el polinomio. Si tengo n puntos, el polinomio va a ser de grado n-1, es por eso que este metodo es eficiente para pocos datos.
+Para obtener el polinomio hago un sistema de ecuaciones tal que p(xi) = yi donde las incógnitas son las a. Cada polinomio (para armar el sistema) si tengo n datos, el polinomio va a ser de grado n.
+
+REGRESION 
+No pasa exactamente por los puntos, por lo tanto cada punto va a tener un cierto error respecto al ajuste.
+La idea es minimizar el error y por el método de cuadrados minimos e = sum(yi - f(xi)) al cuadrado. Para encontrar la funcion debemos derivar respecto de a , b , c , .... e igualar a cero. Armamos sistema de ecuaciones.
+F(x) puede ser lineal (regresion lineal) o un polinomio por ejemplo.
+Un ajuste esperfecto si sr = 0 y r = 1
+yprom = [sumatoria (yi)] / filas
+stcuadrado = sumatoria (yi - yprom)alcuadrado
+srcuadrado = sum(en el codigo) = sumatoria (yi - f(xi))al cuadrado f(x) es por ejemplo ax + b
+sr = ecm = la raiz de srcuadrado
+r = (stcuadrado - srcuadrado) / stcuadrado 
